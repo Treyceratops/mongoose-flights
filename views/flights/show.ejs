@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Flights</title>
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+        <br>
+        <section id="show-page">
+            <div>Airline: </div>
+            <div>
+                <%= flight.airline %>
+            </div>
+            <br>
+            <div>Airport: </div>
+            <div>
+                <%= flight.airport %>
+            </div>
+            <br>
+            <div>Flight Number: </div>
+            <div>
+                <%= flight.flightNo %>
+            </div>
+            <br>
+            <div>Departs: </div>
+            <div>
+                <%= flight.departs %>
+            </div>
+            <br>
+            <div>Destination: </div>
+            <div>
+                <% flight.destinations.forEach(function(d) { %>
+                    <%= d.airport %>
+                        <% }) %>
+            </div>
+            <br>
+            <div>Arrival Date: </div>
+            <div>
+                <% flight.destinations.forEach(function(d) { %>
+                    <%= d.arrival %>
+                        <% }) %>
+            </div>
+            <br>
+            <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
+                <label>Add Destination: </label>
+                <select name="airport">
+                    <option value="AUS">AUS</option>
+                    <option value="DFW">DFW</option>
+                    <option value="DEN">DEN</option>
+                    <option value="LAX">LAX</option>
+                    <option value="SAN">SAN</option>
+                </select>
+                <input type="submit" value="Add Destination">
+                <br>
+                <label>Add Arrival Date:
+                    <input name="arrival" type="datetime-local">
+                </label>
+                <input type="submit" value="Add Arrival">
+            </form>
+        </section>
+</body>
